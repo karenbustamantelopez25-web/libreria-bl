@@ -1,0 +1,1460 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #faf8fc;
+  color: #29212f;
+}
+
+button {
+  font-family: inherit;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.header {
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 7%;
+  border-bottom: 1px solid #eee5f4;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee1f8;
+  border-radius: 14px;
+  font-size: 25px;
+}
+
+.logo h1 {
+  margin: 0;
+  color: #6d3d91;
+  font-size: 24px;
+}
+
+.logo p {
+  margin: 3px 0 0;
+  color: #806d8b;
+  font-size: 12px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #514558;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  color: #8b50b5;
+}
+
+.cart-button {
+  border: none;
+  background: #7d49a5;
+  color: white;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cart-button:hover {
+  background: #693c8c;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero-section {
+  min-height: 570px;
+  padding: 80px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #f8effd, #ffffff);
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 610px;
+}
+
+.hero-label {
+  color: #8751a9;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.hero-content h2 {
+  font-size: 58px;
+  line-height: 1.08;
+  margin: 20px 0;
+  color: #302437;
+}
+
+.hero-content h2 span {
+  color: #8a4fb1;
+}
+
+.hero-content p {
+  color: #6e6175;
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 550px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.primary-button {
+  border: none;
+  background: #7d49a5;
+  color: white;
+}
+
+.primary-button:hover {
+  background: #693c8c;
+  transform: translateY(-2px);
+}
+
+.secondary-button {
+  border: 1px solid #bfa8cb;
+  background: white;
+  color: #68457b;
+}
+
+.secondary-button:hover {
+  background: #f4ebf8;
+}
+
+/* LIBRO DECORATIVO */
+
+.hero-book {
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: #ead9f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-right: 5%;
+}
+
+.book-decoration {
+  width: 170px;
+  height: 220px;
+  background: #7d49a5;
+  border-radius: 8px 18px 18px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  box-shadow: 18px 18px 0 #5f367d;
+  transform: rotate(-8deg);
+}
+
+.book-circle {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  width: 55px;
+  height: 55px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+/* =========================
+   CATEGORÍAS
+========================= */
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 45px 7%;
+  background: white;
+}
+
+.category {
+  padding: 25px;
+  border: 1px solid #eee4f2;
+  border-radius: 15px;
+  text-align: center;
+  background: #ffffff;
+}
+
+.category span {
+  font-size: 32px;
+}
+
+.category h3 {
+  margin: 12px 0 5px;
+  color: #553b62;
+}
+
+.category p {
+  margin: 0;
+  color: #817487;
+}
+
+/* =========================
+   LIBROS
+========================= */
+
+.books-section {
+  padding: 80px 7%;
+}
+
+.section-title {
+  text-align: center;
+}
+
+.section-title span,
+.section-label {
+  color: #8a4fb1;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.section-title h2,
+.about-section h2 {
+  font-size: 36px;
+  color: #302437;
+  margin: 10px 0;
+}
+
+.section-title p {
+  color: #776b7d;
+}
+
+.empty-books {
+  margin: 40px auto 0;
+  max-width: 600px;
+  padding: 45px;
+  text-align: center;
+  background: white;
+  border: 1px solid #eadff0;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(70, 35, 85, 0.07);
+}
+
+.empty-books span {
+  font-size: 50px;
+}
+
+.empty-books h3 {
+  color: #634272;
+}
+
+.empty-books p {
+  color: #7d7082;
+}
+
+/* =========================
+   NOSOTROS
+========================= */
+
+.about-section {
+  padding: 80px 7%;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 60px;
+  align-items: center;
+  background: #f5edf8;
+}
+
+.about-section p {
+  color: #6e6175;
+  line-height: 1.7;
+  max-width: 650px;
+}
+
+.about-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(80, 40, 95, 0.08);
+}
+
+.about-card span {
+  font-size: 45px;
+}
+
+.about-card h3 {
+  color: #70468a;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  background: #302437;
+  color: white;
+  text-align: center;
+  padding: 45px 20px;
+}
+
+.footer h2 {
+  margin: 0 0 8px;
+}
+
+.footer p {
+  color: #d7cbdc;
+}
+
+.footer .copyright {
+  margin-top: 25px;
+  font-size: 12px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .header {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 50px;
+  }
+
+  .hero-content p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-book {
+    margin-right: 0;
+  }
+
+  .categories {
+    grid-template-columns: 1fr;
+  }
+
+  .about-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .hero-content h2 {
+    font-size: 40px;
+  }
+
+  .hero-section {
+    padding: 60px 5%;
+  }
+
+  .hero-book {
+    width: 280px;
+    height: 280px;
+  }
+
+  .book-decoration {
+    width: 135px;
+    height: 180px;
+    font-size: 55px;
+  }
+
+  .section-title h2,
+  .about-section h2 {
+    font-size: 30px;
+  }
+}
+/* =========================
+   CATÁLOGO DE LIBROS
+========================= */
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 45px;
+}
+
+.book-card {
+  background: #ffffff;
+  border: 1px solid #eee3f2;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(70, 35, 85, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 15px 35px rgba(70, 35, 85, 0.15);
+}
+
+.book-image {
+  height: 310px;
+  background: #f3edf6;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.book-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.book-category {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #ffffff;
+  color: #70468a;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.book-info {
+  padding: 20px;
+}
+
+.book-info h3 {
+  color: #382a40;
+  font-size: 17px;
+  margin: 0 0 7px;
+  min-height: 42px;
+}
+
+.author {
+  color: #85758c;
+  font-size: 13px;
+  margin: 0 0 10px;
+}
+
+.rating {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.price {
+  color: #70468a;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 15px;
+}
+
+.book-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.read-button,
+.buy-button {
+  flex: 1;
+  border: none;
+  padding: 10px 8px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.read-button {
+  background: #eee1f6;
+  color: #70468a;
+}
+
+.read-button:hover {
+  background: #dfccec;
+}
+
+.buy-button {
+  background: #7d49a5;
+  color: white;
+}
+
+.buy-button:hover {
+  background: #693c8c;
+}
+
+/* TABLET */
+@media (max-width: 1100px) {
+  .books-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* TABLET PEQUEÑA */
+@media (max-width: 800px) {
+  .books-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* CELULAR */
+@media (max-width: 550px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-image {
+    height: 350px;
+  }
+}
+/* VENTANA DE LECTURA */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(38, 25, 45, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.book-modal {
+  position: relative;
+  width: min(700px, 95%);
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.book-modal > img {
+  width: 190px;
+  max-height: 280px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.modal-info {
+  flex: 1;
+}
+
+.modal-info > span {
+  display: inline-block;
+  background: #eee1f6;
+  color: #70468a;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.modal-info h2 {
+  color: #382a40;
+  margin: 15px 0 5px;
+}
+
+.modal-author {
+  color: #8a7890;
+}
+
+.modal-fragment {
+  color: #5f5365;
+  line-height: 1.7;
+  font-style: italic;
+  margin: 20px 0;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  border: none;
+  background: transparent;
+  font-size: 30px;
+  color: #70468a;
+  cursor: pointer;
+}
+
+.modal-button {
+  border: none;
+  background: #7d49a5;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* =========================
+   CARRITO
+========================= */
+
+.cart-modal {
+  position: relative;
+  width: min(600px, 95%);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.cart-modal h2 {
+  color: #382a40;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 30px;
+}
+
+.empty-cart span {
+  font-size: 50px;
+}
+
+.empty-cart p {
+  color: #76687d;
+  margin: 15px 0 20px;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  background: #f8f3fa;
+  border-radius: 12px;
+}
+
+.cart-item img {
+  width: 65px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-info h3 {
+  margin: 0 0 5px;
+  font-size: 15px;
+  color: #382a40;
+}
+
+.cart-item-info p {
+  margin: 0 0 5px;
+  color: #8a7890;
+  font-size: 13px;
+}
+
+.cart-item-info strong {
+  color: #70468a;
+}
+
+.delete-button {
+  border: none;
+  background: #f2dce5;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eadfea;
+  margin-top: 20px;
+  padding-top: 20px;
+  font-size: 20px;
+}
+
+.cart-total strong {
+  color: #70468a;
+}
+
+.checkout-button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: #7d49a5;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.checkout-button:hover {
+  background: #693c8c;
+}
+/* ================================
+   FORMULARIO DE COMPRA
+================================ */
+
+.purchase-modal {
+  width: 90%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 22px;
+  padding: 35px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: aparecerCompra 0.25s ease;
+}
+
+@keyframes aparecerCompra {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.purchase-modal h2 {
+  margin: 0;
+  text-align: center;
+  color: #5b3478;
+  font-size: 30px;
+}
+
+.purchase-subtitle {
+  text-align: center;
+  color: #777;
+  margin: 10px 0 28px;
+  font-size: 15px;
+}
+
+.purchase-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.purchase-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #4d3858;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.purchase-form input,
+.purchase-form select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 15px;
+  border: 1px solid #ddd0e8;
+  border-radius: 11px;
+  background: #faf8fc;
+  color: #333;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.purchase-form input:focus,
+.purchase-form select:focus {
+  border-color: #a56dcc;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(165, 109, 204, 0.12);
+}
+
+.purchase-form input::placeholder {
+  color: #aaa;
+}
+
+.purchase-total {
+  margin-top: 5px;
+  padding: 17px 18px;
+  background: #f5edfa;
+  border-radius: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #5b3478;
+}
+
+.purchase-total span {
+  font-weight: 600;
+}
+
+.purchase-total strong {
+  font-size: 21px;
+  color: #7b479f;
+}
+
+.confirm-purchase-button {
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  background: #9b63bd;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 5px;
+}
+
+.confirm-purchase-button:hover {
+  background: #7f4c9f;
+  transform: translateY(-1px);
+}
+
+.purchase-modal .modal-close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  border: none;
+  background: transparent;
+  color: #777;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.purchase-modal .modal-close:hover {
+  color: #7b479f;
+}
+
+/* FORMULARIO EN CELULAR */
+
+@media (max-width: 600px) {
+  .purchase-modal {
+    width: 88%;
+    padding: 28px 20px;
+  }
+
+  .purchase-modal h2 {
+    font-size: 25px;
+  }
+
+  .purchase-total {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+/* ================================
+   MENSAJE DE COMPRA EXITOSA
+================================ */
+
+.success-modal {
+  width: 90%;
+  max-width: 430px;
+  background: white;
+  border-radius: 24px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: aparecerCompra 0.3s ease;
+}
+
+.success-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #eadcf4;
+  color: #7b479f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.success-modal h2 {
+  margin: 0 0 15px;
+  color: #5b3478;
+  font-size: 28px;
+}
+
+.success-modal p {
+  margin: 8px 0;
+  color: #6f6575;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.success-modal strong {
+  color: #7b479f;
+}
+
+.success-button {
+  margin-top: 25px;
+  border: none;
+  border-radius: 12px;
+  padding: 13px 40px;
+  background: #9b63bd;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* VENTANA DE COMPRA EXITOSA */
+
+.success-modal {
+  width: 90%;
+  max-width: 430px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: aparecerCompra 0.3s ease;
+}
+
+.success-icon {
+  width: 75px;
+  height: 75px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #eadcf4;
+  color: #7b479f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.success-modal h2 {
+  margin: 0 0 15px;
+  color: #5b3478;
+  font-size: 28px;
+}
+
+.success-modal p {
+  margin: 8px 0;
+  color: #6f6575;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.success-modal strong {
+  color: #7b479f;
+}
+
+.success-button {
+  margin-top: 25px;
+  padding: 13px 42px;
+  border: none;
+  border-radius: 12px;
+  background: #8a4caf;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.success-button:hover {
+  background: #6f398f;
+  transform: translateY(-2px);
+}
+
+@keyframes aparecerCompra {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* ========================================
+   LOGIN - LIBRERÍA BL
+======================================== */
+
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  overflow: hidden;
+  background: #fffafd;
+}
+
+/* ========================================
+   IMAGEN IZQUIERDA
+======================================== */
+
+.login-image {
+  width: 100%;
+  min-height: 100vh;
+
+  background-image: url('./assets/login-fondo.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+}
+
+/* ========================================
+   LADO DERECHO
+======================================== */
+
+.login-side {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px 7%;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      #f0dff8,
+      transparent 35%
+    ),
+    #fffafd;
+
+  overflow-y: auto;
+}
+
+/* ========================================
+   NOMBRE DE LA LIBRERÍA
+======================================== */
+
+.login-brand {
+  width: 100%;
+  max-width: 440px;
+
+  text-align: center;
+
+  margin-bottom: 25px;
+}
+
+.login-logo {
+  width: 65px;
+  height: 65px;
+
+  margin: 0 auto 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eee1f8;
+
+  border-radius: 18px;
+
+  font-size: 32px;
+
+  box-shadow:
+    0 8px 20px rgba(100, 50, 120, 0.12);
+}
+
+.login-brand h1 {
+  margin: 0;
+
+  color: #6d3d91;
+
+  font-size: 36px;
+
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.login-brand p {
+  margin: 7px 0 0;
+
+  color: #806d8b;
+
+  font-size: 14px;
+}
+
+/* ========================================
+   CAJA DEL FORMULARIO
+======================================== */
+
+.login-box {
+  width: 100%;
+  max-width: 440px;
+
+  padding: 35px 40px;
+
+  background: #ffffff;
+
+  border: 1px solid #eee3f2;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 15px 40px rgba(70, 35, 85, 0.10);
+}
+
+/* ========================================
+   TÍTULO DEL FORMULARIO
+======================================== */
+
+.login-box h2 {
+  margin: 0;
+
+  text-align: center;
+
+  color: #382a40;
+
+  font-size: 28px;
+
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.login-description {
+  margin: 8px 0 25px;
+
+  text-align: center;
+
+  color: #806d8b;
+
+  font-size: 14px;
+}
+
+/* ========================================
+   FORMULARIO
+======================================== */
+
+.login-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-box label {
+  margin: 10px 0 7px;
+
+  color: #4d3858;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.login-box input {
+  width: 100%;
+
+  padding: 13px 15px;
+
+  border: 1px solid #ddd0e8;
+
+  border-radius: 10px;
+
+  background: #faf8fc;
+
+  color: #382a40;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.login-box input:focus {
+  border-color: #9b63bd;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px rgba(155, 99, 189, 0.12);
+}
+
+.login-box input::placeholder {
+  color: #aaa0ad;
+}
+
+/* ========================================
+   BOTÓN INICIAR SESIÓN
+======================================== */
+
+.login-button {
+  width: 100%;
+
+  margin-top: 22px;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #7d49a5;
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.login-button:hover {
+  background: #693c8c;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 18px rgba(125, 73, 165, 0.25);
+}
+
+.login-button:disabled {
+  opacity: 0.7;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+/* ========================================
+   MENSAJE DE ERROR
+======================================== */
+
+.login-mensaje {
+  text-align: center;
+
+  margin: 15px 0 5px;
+
+  color: #b33a5b;
+
+  font-size: 14px;
+}
+
+/* ========================================
+   RECUPERAR CONTRASEÑA
+======================================== */
+
+.boton-recuperar {
+  display: block;
+
+  margin: 18px auto 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #7d49a5;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.boton-recuperar:hover {
+  text-decoration: underline;
+}
+
+/* ========================================
+   SEPARADOR
+======================================== */
+
+.login-separator {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 25px 0 15px;
+
+  color: #8b7b91;
+
+  font-size: 13px;
+}
+
+.login-separator::before,
+.login-separator::after {
+  content: '';
+
+  flex: 1;
+
+  height: 1px;
+
+  background: #e5dbe9;
+}
+
+.login-separator span {
+  white-space: nowrap;
+}
+
+/* ========================================
+   BOTÓN REGISTRAR
+======================================== */
+
+.boton-registrar {
+  width: 100%;
+
+  padding: 13px;
+
+  border: 2px solid #9b63bd;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #7d49a5;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.boton-registrar:hover {
+  background: #f4ebf8;
+
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   CELULAR
+======================================== */
+
+@media (max-width: 900px) {
+
+  .login-page {
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .login-image {
+    min-height: 320px;
+    height: 320px;
+  }
+
+  .login-side {
+    min-height: auto;
+    padding: 45px 25px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .login-image {
+    min-height: 240px;
+    height: 240px;
+  }
+
+  .login-side {
+    padding: 35px 18px;
+  }
+
+  .login-brand h1 {
+    font-size: 30px;
+  }
+
+  .login-box {
+    padding: 28px 22px;
+  }
+
+  .login-box h2 {
+    font-size: 24px;
+  }
+}
+ 

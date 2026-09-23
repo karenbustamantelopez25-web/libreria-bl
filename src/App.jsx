@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import Login from './Login'
+import Registro from './Registro'
 
 import ecoEstrellas from './assets/el-eco-de-las-estrellas.png'
 import cartasAlma from './assets/cartas-para-el-alma.png'
@@ -14,6 +15,18 @@ import grandesSuenos from './assets/pequenos-pasos-grandes-suenos.png'
 import reinoSuenos from './assets/el-reino-de-los-suenos.png'
 import mentesMundo from './assets/mentes-que-cambian-el-mundo.png'
 import sinMiedo from './assets/sin-miedo-a-sonar.png'
+import logoLibreria from './assets/logo-libreria-bl.png'
+
+import destinoPaginas from './assets/un-destino-entre-paginas.png'
+import casaAzul from './assets/el-misterio-de-la-casa-azul.png'
+import milMundos from './assets/la-puerta-de-los-mil-mundos.png'
+import comenzarNuevo from './assets/el-poder-de-comenzar-de-nuevo.png'
+import islaSecretos from './assets/la-isla-de-los-secretos.png'
+import despuesLluvia from './assets/despues-de-la-lluvia.png'
+import masEstrellas from './assets/mas-alla-de-las-estrellas.png'
+import creerTi from './assets/aprende-a-creer-en-ti.png'
+import cafeLibros from './assets/cafe-libros-y-casualidades.png'
+import ultimoManuscrito from './assets/el-ultimo-manuscrito.png'
 
 const imagenesLibros = {
   'el-eco-de-las-estrellas.png': ecoEstrellas,
@@ -27,20 +40,32 @@ const imagenesLibros = {
   'pequenos-pasos-grandes-suenos.png': grandesSuenos,
   'el-reino-de-los-suenos.png': reinoSuenos,
   'mentes-que-cambian-el-mundo.png': mentesMundo,
-  'sin-miedo-a-sonar.png': sinMiedo
+  'sin-miedo-a-sonar.png': sinMiedo,
+  'un-destino-entre-paginas.png': destinoPaginas,
+  'el-misterio-de-la-casa-azul.png': casaAzul,
+  'la-puerta-de-los-mil-mundos.png': milMundos,
+  'el-poder-de-comenzar-de-nuevo.png': comenzarNuevo,
+  'la-isla-de-los-secretos.png': islaSecretos,
+  'despues-de-la-lluvia.png': despuesLluvia,
+  'mas-alla-de-las-estrellas.png': masEstrellas,
+  'aprende-a-creer-en-ti.png': creerTi,
+  'cafe-libros-y-casualidades.png': cafeLibros,
+  'el-ultimo-manuscrito.png': ultimoManuscrito
 }
 
 function App() {
   const [usuario, setUsuario] = useState(null)
+  const [vista, setVista] = useState('login')
   const [librosBD, setLibrosBD] = useState([])
   const [libroSeleccionado, setLibroSeleccionado] = useState(null)
   const [carrito, setCarrito] = useState([])
   const [mostrarCarrito, setMostrarCarrito] = useState(false)
   const [mostrarCompra, setMostrarCompra] = useState(false)
   const [compraExitosa, setCompraExitosa] = useState(false)
+  const [procesandoCompra, setProcesandoCompra] = useState(false)
  
     useEffect(() => {
-   fetch('https://libreria-bl.onrender.com/api/libros')
+    fetch('https://libreria-bl.onrender.com/api/libros')
       .then((respuesta) => respuesta.json())
       .then((datos) => {
   console.log('LIBROS DESDE MYSQL:', datos)
@@ -188,10 +213,17 @@ const totalCarrito = carrito.reduce(
 )
    
     if (!usuario) {
+       if (vista === 'registro') {
+    return (
+      <Registro
+        volverLogin={() => setVista('login')}
+      />
+    )
+  }
     return (
       <Login
         onLogin={(datosUsuario) => setUsuario(datosUsuario)}
-        irARegistro={() => alert('Próximamente: Registro')}
+        irARegistro={() => setVista('registro')}
         irARecuperar={() => alert('Próximamente: Recuperar contraseña')}
       />
     )
@@ -210,6 +242,9 @@ const totalCarrito = carrito.reduce(
             <p>Un libro, un mundo por descubrir</p>
           </div>
         </div>
+        <span className="user-greeting">
+  👤 Hola, {usuario.nombre}
+</span> 
 
         <nav className="nav">
           <a href="#inicio">Inicio</a>
@@ -258,15 +293,13 @@ const totalCarrito = carrito.reduce(
 
         </div>
 
-        <div className="hero-book">
-          <div className="book-decoration">
-            📚
-          </div>
-
-          <div className="book-circle">
-            ✨
-          </div>
-        </div>
+       <div className="hero-book">
+      <img
+       src={logoLibreria}
+      alt="Logo de Librería BL"
+      className="hero-logo"
+       />
+</div>  
 
       </section>
 
@@ -317,10 +350,11 @@ const totalCarrito = carrito.reduce(
 
               <div className="book-image">
 
-                <img
-                src={imagenesLibros[libro.imagen]}
-                 alt={libro.titulo}
-                  />
+                
+                 <img
+                src={imagenesLibros[libro.imagen] || libro.imagen}
+               alt={libro.titulo}
+               />
                 <span className="book-category">
                   {libro.categoria}
                 </span>
@@ -394,10 +428,14 @@ const totalCarrito = carrito.reduce(
               ×
             </button>
 
-            <img
-              src={libroSeleccionado.imagen}
-              alt={libroSeleccionado.titulo}
-            />
+            
+        <img
+         src={
+          imagenesLibros[libroSeleccionado.imagen] ||
+           libroSeleccionado.imagen
+        }
+           alt={libroSeleccionado.titulo}
+          />
 
             <div className="modal-info">
 
@@ -583,54 +621,100 @@ const totalCarrito = carrito.reduce(
             </p>
 
             <form
-              className="purchase-form"
-              onSubmit={(e) => {
-                e.preventDefault()
-                setMostrarCompra(false)
-                setCompraExitosa(true)
-                setCarrito([])
-              }}
+             
+           onSubmit={async (e) => {
+            e.preventDefault()
+
+               if (procesandoCompra || carrito.length === 0) return
+
+              setProcesandoCompra(true)
+
+             const formulario = e.currentTarget
+             const datos = new FormData(formulario)
+
+           const pedido = {
+             nombre: datos.get('nombre'),
+             correo: datos.get('correo'),
+             direccion: datos.get('direccion'),
+              metodo_pago: datos.get('metodo_pago'),
+              productos: carrito.map((libro) => ({
+             id: libro.id
+             }))
+           }
+
+         try {
+         const respuesta = await fetch(
+         'https://libreria-bl.onrender.com/api/pedidos',
+         {
+            method: 'POST',
+           headers: {
+          'Content-Type': 'application/json'
+          },
+            body: JSON.stringify(pedido)
+         }
+        )
+
+       const resultado = await respuesta.json()
+
+        if (!respuesta.ok) {
+      throw new Error(
+        resultado.mensaje || 'No se pudo registrar el pedido'
+      )
+    }
+
+         setMostrarCompra(false)
+        setCompraExitosa(true)
+      setCarrito([])
+      } catch (error) {
+       console.error('Error al registrar la compra:', error)
+      alert(error.message || 'No se pudo registrar la compra. Inténtalo de nuevo.')
+    } finally {
+     setProcesandoCompra(false)
+    }
+      }}
             >
 
+              
+           <label>
+            Nombre completo
+
+             <input
+            name="nombre"
+            type="text"
+            placeholder="Escribe tu nombre"
+           minLength="3"
+           required
+         />
+        </label>
+
+              
+            <input
+           name="correo"
+          type="email"
+          placeholder="correo@ejemplo.com"
+           required
+                 />
+
               <label>
-                Nombre completo
-
-                <input
-                  type="text"
-                  placeholder="Escribe tu nombre"
-                  minLength="3"
-                  required
-                />
-              </label>
-
-              <label>
-                Correo electrónico
-
-                <input
-                  type="email"
-                  placeholder="correo@ejemplo.com"
-                  required
-                />
-              </label>
-
-              <label>
-                Dirección de entrega
-
-                <input
-                  type="text"
-                  placeholder="Dirección donde recibirás tu pedido"
-                  minLength="5"
-                  required
-                />
+                
+           <input
+             name="direccion"
+            type="text"
+            placeholder="Dirección donde recibirás tu pedido"
+            minLength="5"
+           required
+           />
               </label>
 
               <label>
                 Método de pago
 
-                <select
-                  defaultValue=""
-                  required
-                >
+                
+              <select
+                name="metodo_pago"
+            defaultValue=""
+            required
+               >
 
                   <option
                     value=""
@@ -674,12 +758,16 @@ const totalCarrito = carrito.reduce(
 
               </div>
 
-              <button
-                type="submit"
-                className="confirm-purchase-button"
-              >
-                Confirmar compra
-              </button>
+              
+         <button
+        type="submit"
+       className="confirm-purchase-button"
+       disabled={procesandoCompra}
+      >
+  {procesandoCompra
+    ? 'Registrando pedido...'
+    : 'Confirmar compra'}
+</button>
 
             </form>
 

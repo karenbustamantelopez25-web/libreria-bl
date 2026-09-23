@@ -17,8 +17,6 @@ const db = mysql.createPool({
   database: process.env.DB_NAME
 })
 
-
-
 // ===============================
 // RUTA PRINCIPAL
 // ===============================
@@ -186,14 +184,112 @@ app.post('/api/login', async (req, res) => {
 })
 
 
+/* ===============================
+   REGISTRAR PEDIDO
+=============================== */
+
+app.post('/api/pedidos', async (req, res) => {
+  try {
+    const {
+      nombre,
+      correo,
+      direccion,
+      metodo_pago,
+      total,
+      productos
+    } = req.body
+
+    if (
+      !nombre?.trim() ||
+      !correo?.trim() ||
+      !direccion?.trim() ||
+      !metodo_pago ||
+      !Array.isArray(productos) ||
+      productos.length === 0
+    ) {
+      return res.status(400).json({
+        mensaje: 'Faltan datos para registrar el pedido'
+      })
+    }
+
+    const metodosPermitidos = [
+      'tarjeta',
+      'pse',
+      'nequi',
+      'contra-entrega'
+    ]
+
+    if (!metodosPermitidos.includes(metodo_pago)) {
+      return res.status(400).json({
+        mensaje: 'Método de pago no válido'
+      })
+    }
+
+    // Calcular el total en el servidor usando los precios de la BD.
+    let totalCalculado = 0
+    const productosPedido = []
+
+    for (const producto of productos) {
+      const [libros] = await db.query(
+        'SELECT id, titulo, precio FROM libros WHERE id = ?',
+        [producto.id]
+      )
+
+      if (libros.length === 0) {
+        return res.status(400).json({
+          mensaje: 'Uno de los libros del pedido no existe'
+        })
+      }
+
+      const libro = libros[0]
+      const precio = Number(libro.precio)
+
+      totalCalculado += precio
+
+      productosPedido.push({
+        id: libro.id,
+        titulo: libro.titulo,
+        precio
+      })
+    }
+
+    const [resultado] = await db.query(
+      `INSERT INTO pedidos
+       (nombre, correo, direccion, metodo_pago, total, productos)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [
+        nombre.trim(),
+        correo.trim(),
+        direccion.trim(),
+        metodo_pago,
+        totalCalculado,
+        JSON.stringify(productosPedido)
+      ]
+    )
+
+    res.status(201).json({
+      mensaje: 'Pedido registrado correctamente',
+      pedidoId: resultado.insertId,
+      total: totalCalculado
+    })
+  } catch (error) {
+    console.error('Error al registrar pedido:', error)
+
+    res.status(500).json({
+      mensaje: 'Error al registrar el pedido'
+    })
+  }
+})
+
 // ===============================
 // INICIAR SERVIDOR
 // ===============================
 
-app.listen(3001, () => {
+const PORT = process.env.PORT || 3001
+
+app.listen(PORT, () => {
 
   console.log(
-    'Servidor backend funcionando en http://localhost:3001'
+    `Servidor backend funcionando en el puerto ${PORT}`
   )
-
 })

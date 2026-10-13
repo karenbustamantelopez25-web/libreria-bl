@@ -40,7 +40,7 @@ function App() {
   const [compraExitosa, setCompraExitosa] = useState(false)
  
     useEffect(() => {
-    fetch('http://localhost:3001/api/libros')
+   fetch('https://libreria-bl.onrender.com/api/libros')
       .then((respuesta) => respuesta.json())
       .then((datos) => {
   console.log('LIBROS DESDE MYSQL:', datos)

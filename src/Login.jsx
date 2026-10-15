@@ -14,7 +14,7 @@ function Login({ onLogin, irARegistro, irARecuperar }) {
     setCargando(true)
 
     try {
-   const respuesta = await fetch('https://libreria-bl.onrender.com/api/login', {
+      const respuesta = await fetch('https://libreria-bl.onrender.com/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

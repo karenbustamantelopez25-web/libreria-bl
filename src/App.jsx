@@ -299,7 +299,7 @@ const totalCarrito = carrito.reduce(
       alt="Logo de Librería BL"
       className="hero-logo"
        />
-</div>  
+       </div>  
 
       </section>
 

@@ -683,21 +683,21 @@ const totalCarrito = carrito.reduce(
             type="text"
             placeholder="Escribe tu nombre"
            minLength="3"
-           required
+             required
          />
-        </label>
-
-              
-            <input
-           name="correo"
-          type="email"
-          placeholder="correo@ejemplo.com"
-           required
-                 />
-
-              <label>
-                
+      <label>
+        Correo electrónico
+        <input
+       name="correo"
+      type="email"
+      placeholder="correo@ejemplo.com"
+      required
+    />
+      </label>
+          Direccion de entrega 
+          
            <input
+          
              name="direccion"
             type="text"
             placeholder="Dirección donde recibirás tu pedido"

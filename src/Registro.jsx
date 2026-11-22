@@ -23,7 +23,7 @@ function Registro({ volverLogin }) {
     setCargando(true)
 
     try {
-      const respuesta = await fetch('https://libreria-bl.onrender.com/api/registro', {
+      const respuesta = await fetch('http://localhost:3001/api/registro', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

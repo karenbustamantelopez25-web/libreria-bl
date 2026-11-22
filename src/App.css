@@ -1653,3 +1653,37 @@ button {
   justify-content: center;
   align-items: center;
 }
+/* Ajuste de los campos del formulario de compra */
+.purchase-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.purchase-modal form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  color: #5b3475;
+  font-weight: 600;
+}
+
+.purchase-modal form input,
+.purchase-modal form select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 12px 14px;
+  border: 1px solid #dfc9eb;
+  border-radius: 10px;
+  background: #fff;
+  color: #333;
+  font: inherit;
+}
+
+.purchase-modal form input:focus,
+.purchase-modal form select:focus {
+  outline: 2px solid #b88bd2;
+  outline-offset: 1px;
+}
